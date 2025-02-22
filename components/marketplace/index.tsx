@@ -1,64 +1,42 @@
 "use client";
-import { Button, Input } from "@nextui-org/react";
-import Link from "next/link";
+import { Button, Card, CardBody, CardFooter, Image } from "@nextui-org/react";
 import React from "react";
-import { DotsIcon } from "@/components/icons/accounts/dots-icon";
-import { ExportIcon } from "@/components/icons/accounts/export-icon";
-import { InfoIcon } from "@/components/icons/accounts/info-icon";
-import { TrashIcon } from "@/components/icons/accounts/trash-icon";
-import { HouseIcon } from "@/components/icons/breadcrumb/house-icon";
-import { UsersIcon } from "@/components/icons/breadcrumb/users-icon";
-import { SettingsIcon } from "@/components/icons/sidebar/settings-icon";
-import { TableWrapper } from "@/components/table/table";
-// import { AddUser } from "./add-user";
+
+const products = Array.from({ length: 24 }, (_, i) => ({
+  id: i + 1,
+  name: "Sample Product",
+  price: `$${(Math.random() * 50 + 10).toFixed(2)}`,
+  image: "https://via.placeholder.com/150",
+}));
 
 export const Marketplace = () => {
   return (
-    <div className="my-10 px-4 lg:px-6 max-w-[95rem] mx-auto w-full flex flex-col gap-4">
-      <ul className="flex">
-        <li className="flex gap-2">
-          <HouseIcon />
-          <Link href={"/"}>
-            <span>Home</span>
-          </Link>
-          <span> / </span>{" "}
-        </li>
-
-        <li className="flex gap-2">
-          <UsersIcon />
-          <span>Users</span>
-          <span> / </span>{" "}
-        </li>
-        <li className="flex gap-2">
-          <span>List</span>
-        </li>
-      </ul>
-
-      <h3 className="text-xl font-semibold">All Accounts</h3>
-      <div className="flex justify-between flex-wrap gap-4 items-center">
-        <div className="flex items-center gap-3 flex-wrap md:flex-nowrap">
-          <Input
-            classNames={{
-              input: "w-full",
-              mainWrapper: "w-full",
-            }}
-            placeholder="Search users"
-          />
-          <SettingsIcon />
-          <TrashIcon />
-          <InfoIcon />
-          <DotsIcon />
-        </div>
-        <div className="flex flex-row gap-3.5 flex-wrap">
-          {/* <AddUser /> */}
-          <Button color="primary" startContent={<ExportIcon />}>
-            Export to CSV
-          </Button>
-        </div>
-      </div>
-      <div className="max-w-[95rem] mx-auto w-full">
-        <TableWrapper />
+    <div className="container mx-auto p-6">
+      <h1 className="text-3xl font-bold text-center mb-6">Marketplace</h1>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+        {products.map((product) => (
+          <Card key={product.id} shadow="sm" className="p-3">
+            <CardBody className="flex flex-col items-center">
+              <Image
+                src={product.image}
+                alt={product.name}
+                className="rounded-lg"
+                width={150}
+                height={150}
+              />
+              <h2 className="text-lg font-semibold mt-2">{product.name}</h2>
+              <p className="text-gray-600">{product.price}</p>
+            </CardBody>
+            <CardFooter className="flex justify-center">
+              <Button color="primary" variant="flat">
+                Add to Cart
+              </Button>
+            </CardFooter>
+          </Card>
+        ))}
       </div>
     </div>
   );
 };
+
+export default Marketplace;
