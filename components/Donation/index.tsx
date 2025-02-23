@@ -1,64 +1,58 @@
 "use client";
-import { Button, Input } from "@nextui-org/react";
+
 import Link from "next/link";
-import React from "react";
-import { DotsIcon } from "@/components/icons/accounts/dots-icon";
-import { ExportIcon } from "@/components/icons/accounts/export-icon";
-import { InfoIcon } from "@/components/icons/accounts/info-icon";
-import { TrashIcon } from "@/components/icons/accounts/trash-icon";
-import { HouseIcon } from "@/components/icons/breadcrumb/house-icon";
-import { UsersIcon } from "@/components/icons/breadcrumb/users-icon";
-import { SettingsIcon } from "@/components/icons/sidebar/settings-icon";
-import { TableWrapper } from "@/components/table/table";
-// import { AddUser } from "./add-user";
+import { CardDonations } from "./card-form";
+import { TableWrapper } from "../table/table";
+// import { CardMap } from "./card-map";
 
 export const Donation = () => {
   return (
-    <div className="my-10 px-4 lg:px-6 max-w-[95rem] mx-auto w-full flex flex-col gap-4">
-      <ul className="flex">
-        <li className="flex gap-2">
-          <HouseIcon />
-          <Link href={"/"}>
-            <span>Home</span>
-          </Link>
-          <span> / </span>{" "}
-        </li>
-
-        <li className="flex gap-2">
-          <UsersIcon />
-          <span>Users</span>
-          <span> / </span>{" "}
-        </li>
-        <li className="flex gap-2">
-          <span>List</span>
-        </li>
-      </ul>
-
-      <h3 className="text-xl font-semibold">All Accounts</h3>
-      <div className="flex justify-between flex-wrap gap-4 items-center">
-        <div className="flex items-center gap-3 flex-wrap md:flex-nowrap">
-          <Input
-            classNames={{
-              input: "w-full",
-              mainWrapper: "w-full",
-            }}
-            placeholder="Search users"
-          />
-          <SettingsIcon />
-          <TrashIcon />
-          <InfoIcon />
-          <DotsIcon />
+    <div className="h-full lg:px-6">
+      <div className="flex justify-center gap-4 xl:gap-6 pt-3 px-4 lg:px-0  flex-wrap xl:flex-nowrap sm:pt-10 max-w-[90rem] mx-auto w-full">
+      <div className="mt-6 gap-6 flex flex-col w-full">
+        {/* Card Section Top */}
+        <div className="flex flex-col gap-2">
+          <h3 className="text-xl font-semibold">Donor Locations</h3>
+          {/* <div className="grid md:grid-cols-2 grid-cols-1 2xl:grid-cols-3 gap-5  justify-center w-full">
+            <CardMap />
+          </div> */}
         </div>
-        <div className="flex flex-row gap-3.5 flex-wrap">
-          {/* <AddUser /> */}
-          <Button color="primary" startContent={<ExportIcon />}>
-            Export to CSV
-          </Button>
+
+        {/* Chart */}
+        {/* <div className="h-full flex flex-col gap-2">
+          <h3 className="text-xl font-semibold">Statistics</h3>
+          <div className="w-full bg-default-50 shadow-lg rounded-2xl p-6 ">
+            <Chart />
+          </div>
+        </div> */}
+      </div>
+
+      {/* Left Section */}
+      <div className="mt-4 gap-2 flex flex-col xl:max-w-md w-full">
+        <h3 className="text-xl font-semibold">Section</h3>
+        <div className="flex flex-col justify-center gap-4 flex-wrap md:flex-nowrap md:flex-col">
+          <CardDonations />
+          {/* <CardTransactions /> */}
         </div>
       </div>
-      <div className="max-w-[95rem] mx-auto w-full">
-        <TableWrapper />
+    </div>
+
+    {/* Table Latest Users */}
+    <div className="flex flex-col justify-center w-full py-5 px-4 lg:px-0  max-w-[90rem] mx-auto gap-3">
+      <div className="flex  flex-wrap justify-between">
+        <h3 className="text-center text-xl font-semibold">Recent Donors</h3>
+        <Link
+          href="/accounts"
+          // as={NextLink}
+          color="primary"
+          className="cursor-pointer"
+        >
+          View All
+        </Link>
       </div>
+      <TableWrapper />
+    </div>
+      
     </div>
   );
 };
